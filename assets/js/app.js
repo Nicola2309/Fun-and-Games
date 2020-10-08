@@ -59,7 +59,7 @@ const grid = document.querySelector('.grid')
 const resultDisplay = document.querySelector('#results')
 var cardsChosen = []
 var cardsChosenId = []
-var cardsWon  = []
+const cardsWon  = []
 
     // creating your game board
     //con il 'for loop' loopperemo nel nostro (Array/)vettore di carte e daremo un'immagine ad ogni carta
@@ -78,10 +78,18 @@ var cardsWon  = []
         var cards = document.querySelectorAll('img')
         const optionOneId = cardsChosenId[0]
         const optionTwoId = cardsChosenId[1]
-        if (cardsChosen[0] === cardsChosen[1]) {
+        
+        if (optionOneId == optionTwoId) {
+            cards[optionOneId].setAttribute('src','assets/imgs/cardBack.png')
+            cards[optionTwoId].setAttribute('src','assets/imgs/cardBack.png')
+            alert('You have clicked the same image!')
+        }
+       else if (cardsChosen[0] === cardsChosen[1]) {
             alert('You found a match')
             cards[optionOneId].setAttribute('src', 'assets/imgs/robin-schreiner-7y4858E8PfA-unsplash.png')
             cards[optionTwoId].setAttribute('src', 'assets/imgs/robin-schreiner-7y4858E8PfA-unsplash.png')
+            cards[optionOneId].removeEventListener('click', flipCard)
+            cards[optionTwoId].removeEventListener('click', flipCard)
             cardsWon.push(cardsChosen)
         } else {
             cards[optionOneId].setAttribute('src', 'assets/imgs/cardBack.png')
@@ -108,6 +116,6 @@ var cardsWon  = []
      }
  }
     
-    createBoard();
+    createBoard()
 
-});
+})
